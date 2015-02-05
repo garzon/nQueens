@@ -1,5 +1,6 @@
 #lang scheme
 
+; common algorithms
 (define reduce (lambda(f init list)
   (if
    (null? list)
@@ -16,10 +17,12 @@
 ))
 
 (define queens (lambda(n)
+  ; class pos
   (define make-pos (lambda(x y) (list x y)))
   (define pos->x (lambda(pos) (car pos)))
   (define pos->y (lambda(pos) (car (cdr pos))))
   
+  ; predicates
   (define valid? (lambda(board)
     (define check? (lambda(pos1 pos2)
       (cond
@@ -36,6 +39,7 @@
     )
   ))
   
+  ; recursive procedure
   (define queen-col (lambda (x)
     (cond
      ((< x 0) '(()))
@@ -52,7 +56,8 @@
    )
   ))
   
+  ; ans
   (queen-col (- n 1))
 ))
 
-(queens 6)
+(length (queens 8)) ; => 92
